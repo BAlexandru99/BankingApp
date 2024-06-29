@@ -1,0 +1,128 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+    background-image: url('backround.jpg'); /* Fundalul */
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundal semi-transparent */
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(124, 228, 98, 0.5);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo img {
+    height: 90px;
+}
+
+.welcome-message h1 {
+    margin: -10;
+    font-size: 21px;
+}
+
+.new-button button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.new-button button:hover {
+    background-color: darkgreen;
+}
+
+.account-info {
+    margin-top: 0px;
+    margin-left: 80px;
+}
+
+.balance p {
+    font-size: 20px;
+    margin-left: 100px;
+}
+
+.buttons, .actions {
+    display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+}
+
+.buttons button, .actions button {
+    background-color: rgb(20, 213, 113);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.buttons button:hover, .actions button:hover {
+    background-color: gray;
+    color: white;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    width: -200%;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    width: 10%;
+}
+
+.menu-item img {
+    height: 50px;
+    margin-right: 20px;
+}
+
+.menu-item p {
+    margin: 0;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.products img {
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(20, 231, 146, 0.5);
+    margin: 0 10px;
+}

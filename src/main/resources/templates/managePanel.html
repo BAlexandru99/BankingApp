@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/styles-panel.css}">
+</head>
+<body>
+    <div class="background">
+        <div class="content">
+            <header>
+                <div class="logo">
+                    <!-- Imaginea logo -->
+                    <img th:src="@{/images/logo.png}" alt="Green Bank">
+                </div>
+                <div class="welcome-message">
+                    <h1 th:text="'Bine ai venit, ' + *{username}"></h1>
+                </div>
+                <div class="new-button">
+                    <button>New +</button>
+                </div>
+            </header>
+
+            <div class="account-info">
+                <div class="balance">
+                    <p th:text="'Cont: ' + *{suma} + ' Lei'"></p>
+                </div>
+                <div class="actions">
+                    <button>Istoric Tranzacții</button>
+                    <button>Plată nouă</button>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="menu-item">
+                    <a href="/contact">
+                        <img th:src="@{/images/contact-icon.png}" alt="Contact">
+                        <p>Contact</p>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="/carduri">
+                        <img th:src="@{/images/card-icon.png}" alt="Carduri">
+                        <p>Carduri</p>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="/produse">
+                        <img th:src="@{/images/products-icon.png}" alt="Produse">
+                        <p>Produse</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="products">
+                <img th:src="@{/images/products.png}" alt="Products">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
