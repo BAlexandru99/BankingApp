@@ -46,7 +46,7 @@ The Green Bank Application is a web-based banking system that allows users to ma
 3. Run the application:
   ```bash
   mvn spring-boot:run
-
+   ```
 
 ### Accessing the Application
 
