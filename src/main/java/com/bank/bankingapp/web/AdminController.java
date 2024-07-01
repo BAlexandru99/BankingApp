@@ -1,5 +1,8 @@
 package com.bank.bankingapp.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.bankingapp.entity.User;
 import com.bank.bankingapp.service.UserSevice;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @Controller
 @RequestMapping("/login")
@@ -33,8 +38,19 @@ public class AdminController {
 
     @PostMapping("/addUser")
     public ResponseEntity<String> addUser(@Valid @RequestBody User user) {
-        userSevice.saveUser(user);
-        return ResponseEntity.ok("User added successfully");
+        User existingUser = userSevice.findByUsername(user.getUsername());
+        if (existingUser != null) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("User already exists with username: " + user.getUsername());
+        } else {
+            userSevice.saveUser(user);
+            return ResponseEntity.ok("User added successfully!");
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable Long id , @RequestBody User user ){
+        userSevice.updateById(id, user);
+        return ResponseEntity.ok("User updated successfully!");
     }
     
     @DeleteMapping("/{id}")
