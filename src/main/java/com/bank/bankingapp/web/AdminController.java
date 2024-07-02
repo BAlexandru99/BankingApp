@@ -36,6 +36,7 @@ public class AdminController {
             return "home";
         }
 
+
     @PostMapping("/addUser")
     public ResponseEntity<String> addUser(@Valid @RequestBody User user) {
         User existingUser = userSevice.findByUsername(user.getUsername());

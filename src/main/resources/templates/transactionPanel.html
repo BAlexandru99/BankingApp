@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ro" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Tranzacții</title>
+    <link rel="stylesheet" th:href="@{/styles-transaction.css}">
+</head>
+<body>
+    <div class="background">
+        <div class="form-container">
+            <form th:action="@{/addTransaction}" method="post">
+                <label for="destinat">Destinatar</label>
+                <input type="text" id="destinat" name="destinat" required>
+                
+                <label for="suma">Suma</label>
+                <input type="number" id="suma" name="suma" required>
+                
+                <label for="moneda">Moneda</label>
+                <select id="moneda" name="moneda" required>
+                    <option value="RON">RON</option>
+                    <option value="EURO">EURO</option>
+                </select>
+                
+                <label for="descriere">Descriere</label>
+                <textarea id="descriere" name="descriere"></textarea>
+                
+                <button type="submit">Trimite</button>
+            </form>
+            <div th:if="${message}">
+                <p th:text="${message}"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
