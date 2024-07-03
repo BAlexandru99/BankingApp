@@ -30,7 +30,7 @@ public class Transactions {
     @JoinColumn(name = "username" , referencedColumnName = "username")
     private User user;
     @Column(name = "suma" , nullable = false)
-    private Long suma;
+    private int suma;
     @Column(name = "moneda" , nullable = false)
     private String moneda;
     @Column(name = "message")

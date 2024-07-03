@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bank.bankingapp.entity.User;
+import com.bank.bankingapp.exceptions.NotEnoughExceprion;
 import com.bank.bankingapp.exceptions.UserNotFoundException;
 import com.bank.bankingapp.repository.UserRepository;
 
@@ -63,5 +64,25 @@ public class UserServiceImpl implements UserSevice{
             // Add any other fields that need to be updated
             return userRepository.save(existingUser);
         } else throw new UserNotFoundException(id); // Or throw an exception if user not found
+    }
+
+
+
+    @Override
+    public void updateSum(String username , int sum , String transationUsername) {
+        User user = userRepository.findByUsername(username);
+        User transationUser = userRepository.findByUsername(transationUsername);
+
+        int userInitial = transationUser.getSuma();
+        int userFinalSum = userInitial - sum;
+
+        if(transationUser.getSuma() >= sum){
+            userRepository.updateSuma(userFinalSum, transationUsername);
+            int initalSum  = user.getSuma();
+            int finalSum = initalSum + sum;
+            userRepository.updateSuma(finalSum, username);
+        }else{
+            throw new NotEnoughExceprion();
+        }
     }
 }

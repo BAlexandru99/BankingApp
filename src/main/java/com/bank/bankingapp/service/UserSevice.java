@@ -12,4 +12,5 @@ public interface UserSevice {
     void deleteById(Long id);
     User findByUsername(String username);
     User updateById(Long id, User user);
+    public void updateSum(String username, int sum , String transationUser);
 }

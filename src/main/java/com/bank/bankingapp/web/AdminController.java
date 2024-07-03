@@ -3,6 +3,7 @@ package com.bank.bankingapp.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +63,15 @@ public class AdminController {
 
 
     @PostMapping("/submit")
-    public String submitForm(@RequestParam String username, @RequestParam String password, Model model){
+    public String submitForm(@RequestParam String username, @RequestParam String password, Model model , HttpSession session){
         User user = userSevice.authenticate(username, password);
             if(user != null){
             String capitalizedUsername = capitalizeFirstLetter(user.getUsername());
             model.addAttribute("username", capitalizedUsername);
             model.addAttribute("suma", user.getSuma());
+            session.setAttribute("loggedInUsername", username);
+            //session.setAttribute("sumOfTheUser", user.getSuma());
+
             return "managePanel";
         } else {
             model.addAttribute("error", "Invalid username or password");

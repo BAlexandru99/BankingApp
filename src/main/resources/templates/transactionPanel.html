@@ -28,8 +28,10 @@
                 <button type="submit">Trimite</button>
             </form>
             <div th:if="${message}">
-                <p th:text="${message}"></p>
+                <p th:text="${message}" style="color: green;"></p>
             </div>
+            <div th:if="${error}">
+                <p th:text="${error}" style="color: red;"></p>
         </div>
     </div>
 </body>
