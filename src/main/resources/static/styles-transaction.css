@@ -53,3 +53,31 @@ button {
 button:hover {
     background-color: #218838;
 }
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button img {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.back-button img:active {
+    filter: grayscale(100%);
+}

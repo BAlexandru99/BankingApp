@@ -25,7 +25,7 @@
                     <p th:text="'Cont: ' + *{suma} + ' Lei'"></p>
                 </div>
                 <div class="actions">
-                    <button>Istoric Tranzacții</button>
+                    <a href="/transactionHistory"><button>Istoric Tranzacții</button></a>
                     <a href="/transactionPanel"><button>Plată nouă</button></a>
                 </div>
             </div>
@@ -55,6 +55,10 @@
                 <img th:src="@{/images/products.png}" alt="Products">
             </div>
         </div>
+        <div class="back-button">
+            <a th:href="@{/login/}">
+            <img  th:src="@{/images/back-button.png}" alt="Back">
+            </a>
     </div>
 </body>
 </html>

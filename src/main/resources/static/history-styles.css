@@ -1,0 +1,66 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+    background-image: url('backround.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 500px; /* Am marit latimea pentru a face loc coloanelor */
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(20, 213, 113);
+}
+
+.transaction-list {
+    width: 100%;
+}
+
+.transaction-header, .transaction-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 2fr; /* Ajusteaza proporțiile coloanelor dupa necesitate */
+    gap: 40px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.transaction-header {
+    font-weight: bold;
+    color: rgb(20, 213, 113);
+}
+
+.transaction-item:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.transaction-item a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.transaction-item a:hover {
+    text-decoration: underline;
+}
+
+.data-ora div {
+    display: block;
+}

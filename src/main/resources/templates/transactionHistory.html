@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/history-styles.css}">
+    <title>Tranzactii</title>
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <h2>Tranzactii</h2>
+            <div class="transaction-list">
+                <div class="transaction-header">
+                    <div>Data/ Ora</div>
+                    <div>Expeditor</div>
+                    <div>Suma</div>
+                    <div>Mesaj</div>
+                </div>
+                <div th:each="transaction : ${transactionsList}" class="transaction-item">
+                    <div class="data-ora">
+                        <div th:text="${#strings.substring(transaction.timestamp, 0, 10)}"></div>
+                        <div th:text="${#strings.substring(transaction.timestamp, 11)}"></div>
+                    </div>
+                    <div th:text="${transaction.expeditor}"></div>
+                    <div th:text="${transaction.suma} + ' ' + ${transaction.moneda}"></div>
+                    <div th:text="${transaction.message}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

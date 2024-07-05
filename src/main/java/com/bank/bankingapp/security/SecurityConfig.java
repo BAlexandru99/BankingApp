@@ -26,7 +26,6 @@ public class SecurityConfig {
                 .anyRequest().authenticated() // All other endpoints require authentication
             .and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Statelessness for session management
-
         return http.build();
     }
     
