@@ -64,3 +64,20 @@ h2 {
 .data-ora div {
     display: block;
 }
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.back-button img {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.back-button img:active {
+    filter: grayscale(100%);
+}

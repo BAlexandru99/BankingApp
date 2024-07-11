@@ -31,4 +31,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
    //-:suma și :username: parametri care vor fi înlocuiți cu valorile furnizate la apelarea metodei.
    @Query("UPDATE User u SET u.suma = :suma WHERE u.username = :username")
    void updateSuma(int suma, String username);
+
+   
 }

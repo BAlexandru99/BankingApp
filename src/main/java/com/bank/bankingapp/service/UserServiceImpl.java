@@ -104,4 +104,11 @@ public class UserServiceImpl implements UserSevice{
             throw new NotEnoughExceprion();
         }
     }
+
+
+
+    @Override
+    public User refreshUser(String username) {
+       return userRepository.findByUsername(username);
+    }
 }

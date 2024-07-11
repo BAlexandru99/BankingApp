@@ -77,8 +77,9 @@ public class PaymentController {
             // Actualizam suma utilizatorului destinatar
             userSevice.updateSum(destinat, suma, loggedInUsername);
             // Afisam mesajul de succes
+            User refreshedUser = userSevice.refreshUser(loggedInUsername);
+            session.setAttribute("loggedInUser", refreshedUser);
             model.addAttribute("message", "Tranzacția a fost adăugată cu succes!");
-
             
         } catch (NotEnoughExceprion e) {
             // In cazul în care nu există suficienti bani pentru tranzactie, gestionam excepția

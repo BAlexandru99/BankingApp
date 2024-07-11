@@ -98,10 +98,11 @@ public class AdminController {
     // Obținem utilizatorul autentificat din sesiune
     User user = (User) session.getAttribute("loggedInUser");
     if (user != null) {
+        User refreshUser = userSevice.refreshUser(user.getUsername());
         // Capitalizam primul caracter al numelui de utilizator pentru afisare
         String capitalizedUsername = capitalizeFirstLetter(user.getUsername());
         model.addAttribute("username", capitalizedUsername);
-        model.addAttribute("suma", user.getSuma());
+        model.addAttribute("suma", refreshUser.getSuma());
     } else {
         return "redirect:/login/"; // Redirectionam catre pagina de start dacă nu exista utilizator autentificat
     }

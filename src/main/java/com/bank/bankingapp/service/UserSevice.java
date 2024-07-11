@@ -13,4 +13,5 @@ public interface UserSevice {
     User findByUsername(String username);
     User updateById(Long id, User user);
     public void updateSum(String username, int sum , String transationUser);
+    User refreshUser(String username);
 }
