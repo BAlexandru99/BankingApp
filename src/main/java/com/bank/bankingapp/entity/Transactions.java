@@ -18,8 +18,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 // Generare constructor cu parametri
 @AllArgsConstructor
 // Generare constructor fără parametri
@@ -57,4 +55,62 @@ public class Transactions {
 
     @Column(name = "data", columnDefinition = "TIMESTAMP(0)")
     private LocalDateTime timestamp;
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getExpeditor() {
+        return this.expeditor;
+    }
+
+    public void setExpeditor(String expeditor) {
+        this.expeditor = expeditor;
+    }
+
+    public int getSuma() {
+        return this.suma;
+    }
+
+    public void setSuma(int suma) {
+        this.suma = suma;
+    }
+
+    public String getMoneda() {
+        return this.moneda;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return this.timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
 }

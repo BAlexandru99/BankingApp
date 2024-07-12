@@ -1,7 +1,9 @@
 package com.bank.bankingapp.web;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,12 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bank.bankingapp.entity.Transactions;
 import com.bank.bankingapp.entity.User;
 import com.bank.bankingapp.exceptions.NotEnoughExceprion;
 import com.bank.bankingapp.service.TransactionsService;
 import com.bank.bankingapp.service.UserSevice;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class PaymentController {
@@ -40,12 +45,40 @@ public class PaymentController {
                                  @RequestParam int suma, 
                                  @RequestParam String moneda, 
                                  @RequestParam String descriere, 
+                                 @RequestParam String operation,
                                  HttpSession session,
                                  Model model) {
-        
 
-        // Obtinem numele de utilizator al utilizatorului autentificat din sesiune
+
         String loggedInUsername = (String) session.getAttribute("loggedInUsername");
+        User loggednInUser = userSevice.findByUsername(loggedInUsername);
+        User destinatar = userSevice.findByUsername(destinat);
+
+        if(operation.equals("primeste")){         
+            if (loggedInUsername.equals(destinat)) {
+                model.addAttribute("error", "Nu puteți face cerere către dvs.");
+                return "transactionPanel"; // Returnam pagina panoului de tranzactii cu mesajul de eroare
+            }
+            if (destinatar == null) {
+                model.addAttribute("error", "Destinatarul nu există în baza de date.");
+                return "transactionPanel";// Returnam pagina panoului de tranzactii cu mesajul de eroare
+            }
+
+            Transactions transactions = new Transactions();
+            transactions.setUser(destinatar);
+            transactions.setSuma(suma);
+            transactions.setExpeditor(loggedInUsername);
+            transactions.setMessage(descriere);
+
+            session.setAttribute("requestUser", transactions.getExpeditor());
+            session.setAttribute("requestSum", suma);
+            session.setAttribute("requestDesc", descriere);
+            session.setAttribute("destinat", destinat);
+
+            model.addAttribute("message", "Cererea a fost inregistrata cu succes!");
+            return "transactionPanel";
+        }
+
         
         // Verificam dacă utilizatorul incearca sa trimita bani către propriul cont
         if (loggedInUsername.equals(destinat)) {
@@ -53,8 +86,6 @@ public class PaymentController {
             return "transactionPanel"; // Returnam pagina panoului de tranzactii cu mesajul de eroare
         }
 
-        // Cautam utilizatorul destinatar în baza de date
-        User destinatar = userSevice.findByUsername(destinat);
         if (destinatar == null) {
             model.addAttribute("error", "Destinatarul nu există în baza de date.");
             return "transactionPanel";// Returnam pagina panoului de tranzactii cu mesajul de eroare
@@ -88,6 +119,6 @@ public class PaymentController {
             model.addAttribute("error", "You don't have enough money!");
         }
         return "transactionPanel";  // Returnam pagina panoului de tranzactii
-    }
-
+    }  
+    
 }    

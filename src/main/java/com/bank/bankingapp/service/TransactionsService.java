@@ -10,5 +10,6 @@ import com.bank.bankingapp.entity.User;
 public interface TransactionsService {
     Transactions addTransactions(Transactions transactions , String username);
     List<Transactions> getTransactionsByUser(String username);
+    
 }
 

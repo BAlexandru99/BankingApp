@@ -35,7 +35,7 @@ header {
 }
 
 .welcome-message h1 {
-    margin: -10;
+    margin: 0;
     font-size: 21px;
 }
 
@@ -143,3 +143,102 @@ header {
 .back-button img:active {
     filter: grayscale(100%);
 }
+
+.icon {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.modal__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Asigură centrare pe orizontală */
+    align-items: center; /* Asigură centrare pe verticală */
+    overflow: hidden;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.modal__content {
+    width: 30%;
+    max-width: 500px; /* Adăugat pentru a limita lățimea maximă */
+    background-color: #FFF;
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-radius: 1rem;
+    transition: all 0.3s;
+}
+
+.modal__img {
+    width: 90px;
+    margin-bottom: .75rem;
+}
+
+.show-modal {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal__close {
+    display: inline-flex;
+    background-color: #14d571;
+    border-radius: .25rem;
+    color: #FFF;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+}
+
+.modal__title {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.modal__description {
+    font-size: .875rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+.modal__button, .modal__button-link {
+    display: inline-block;
+    background-color: #14d571;
+    color: #FFF;
+    padding: .75rem 1.5rem;
+    border-radius: .5rem;
+    transition: all 0.3s;
+}
+
+.modal__button-link:hover {
+    background-color: #f30e0e;
+}
+
+.modal__button:hover{
+    background-color: rgba(36, 212, 212, 0.683);
+}
+
+.modal__button-link {
+    background-color: transparent;
+    color: #777;
+    margin-top: 1rem;
+}
+
+.show-modal {
+    visibility: visible;
+    opacity: 1;
+}
+

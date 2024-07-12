@@ -10,6 +10,23 @@
     <div class="background">
         <div class="form-container">
             <form th:action="@{/addTransaction}" method="post">
+                <!-- Dropdown personalizat -->
+                <div class="dropdown-top">
+                    <div class="dropdown">
+                        <div class="select">
+                            <span class="selected">Trimite</span>
+                            <div class="caret"></div>
+                        </div>
+                        <ul class="menu">
+                            <li data-value="primeste">Primeste</li>
+                            <li data-value="trimite" class="active">Trimite</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Input ascuns pentru a trimite valoarea selectată -->
+                <input type="hidden" id="operation" name="operation" value="trimite">
+
                 <label for="destinat">Destinatar</label>
                 <input type="text" id="destinat" name="destinat" required>
                 
@@ -27,18 +44,57 @@
                 
                 <button type="submit">Trimite</button>
             </form>
+
             <div th:if="${message}">
                 <p th:text="${message}" style="color: green;"></p>
             </div>
             <div th:if="${error}">
                 <p th:text="${error}" style="color: red;"></p>
+            </div>
         </div>
     </div>
-    </div>
+
     <div class="back-button">
         <a th:href="@{/login/submit}">
-        <img  th:src="@{/images/back-button.png}" alt="Back">
+            <img th:src="@{/images/back-button.png}" alt="Back">
         </a>
     </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => {
+                const select = dropdown.querySelector('.select');
+                const caret = dropdown.querySelector('.caret');
+                const menu = dropdown.querySelector('.menu');
+                const options = dropdown.querySelectorAll('.menu li');
+                const selected = dropdown.querySelector('.selected');
+                const hiddenInput = document.querySelector('#operation');
+
+                select.addEventListener('click', () => {
+                    select.classList.toggle('select-clicked');
+                    caret.classList.toggle('caret-rotate');
+                    menu.classList.toggle('menu-open');
+                });
+
+                options.forEach(option => {
+                    option.addEventListener('click', () => {
+                        selected.innerText = option.innerText;
+                        hiddenInput.value = option.getAttribute('data-value'); // Setăm valoarea ascunsă
+                        select.classList.remove('select-clicked');
+                        caret.classList.remove('caret-rotate');
+                        menu.classList.remove('menu-open');
+
+                        options.forEach(opt => {
+                            opt.classList.remove('active');
+                        });
+                        option.classList.add('active');
+                    });
+                });
+            });
+        });
+        /*]]>*/
+    </script>
 </body>
 </html>

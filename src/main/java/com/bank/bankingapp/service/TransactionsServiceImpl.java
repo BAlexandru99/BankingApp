@@ -35,4 +35,6 @@ public class TransactionsServiceImpl implements TransactionsService {
         // Găsim și returnăm toate tranzacțiile pentru un anumit utilizator
         return transactionRepository.findByUser_Username(username);
     }
+
+    
 }

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Bank</title>
     <link rel="stylesheet" th:href="@{/styles-panel.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body>        
     <div class="background">
         <div class="content">
             <header>
@@ -13,16 +16,17 @@
                     <img th:src="@{/images/logo.png}" alt="Green Bank">
                 </div>
                 <div class="welcome-message">
-                    <h1 th:text="'Bine ai venit, ' + *{username}"></h1>
+                    <h1 th:text="'Bine ai venit, ' + ${username}"></h1>
                 </div>
                 <div class="new-button">
                     <button>New +</button>
                 </div>
+                <img src="/images/notification.png" alt="Notification Icon" class="icon" id="open-modal">
             </header>
 
             <div class="account-info">
                 <div class="balance">
-                    <p th:text="'Cont: ' + *{suma} + ' Lei'"></p>
+                    <p th:text="'Cont: ' + ${suma} + ' Lei'"></p>
                 </div>
                 <div class="actions">
                     <a href="/transactionHistory"><button>Istoric Tranzacții</button></a>
@@ -57,8 +61,57 @@
         </div>
         <div class="back-button">
             <a th:href="@{/login/}">
-            <img  th:src="@{/images/back-button.png}" alt="Back">
+                <img th:src="@{/images/back-button.png}" alt="Back">
             </a>
+        </div>
     </div>
+
+    <section class="modal container">
+        <div class="modal__container" id="modal-container">
+            <div class="modal__content">
+                <div class="modal__close close-modal" title="Close">
+                    <i class='bx bx-x'></i>
+
+
+
+                </div>
+                <img src="/images/star-trophy.png" alt="" class="modal__img">
+                <h1 class="modal__title">Cerere</h1>
+                <div th:if="${session.loggedInUsername == session.destinat}">
+                    <p class="modal__description" th:text="'Utilizatorul: ' + ${session.requestUser}"></p>
+                    <p class="modal__description" th:text="'Suma: ' + ${session.requestSum}"></p>
+                    <p class="modal__description" th:text="'Descriere: ' + ${session.requestDesc}"></p>
+                </div>
+                <button class="modal__button modal__button-width">Trimite</button>
+                <button class="modal__button-link close-modal">Respinge</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const showModal = (openButton, modalContent) => {
+                const openBtn = document.getElementById(openButton),
+                    modalContainer = document.getElementById(modalContent);
+
+                if (openBtn && modalContainer) {
+                    openBtn.addEventListener('click', () => {
+                        modalContainer.classList.add('show-modal');
+                    });
+                }
+            };
+            showModal('open-modal', 'modal-container');
+
+            const closeBtn = document.querySelectorAll('.close-modal');
+
+            function closeModal() {
+                const modalContainer = document.getElementById('modal-container');
+                modalContainer.classList.remove('show-modal');
+            }
+
+            closeBtn.forEach(c => c.addEventListener('click', closeModal));
+        });
+    </script>
 </body>
 </html>
