@@ -1,6 +1,6 @@
 # Green Bank Application
 
-Welcome to the Green Bank Application repository. This project is currently under development.
+Welcome to the Green Bank Application repository.
 
 ## Overview
 
